@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Employee Form View -->
+    <record id="view_employee_form_inherit_supreme" model="ir.ui.view">
+        <field name="name">hr.employee.form.supreme</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Employee Code after name -->
+            <field name="name" position="after">
+                <field name="employee_code" readonly="1"/>
+            </field>
+            
+            <!-- Add new page for Supreme HRMS fields -->
+            <notebook position="inside">
+                <page string="Additional Information" name="supreme_info">
+                    <group>
+                        <group string="Personal Details">
+                            <field name="blood_group"/>
+                            <field name="work_location_type"/>
+                        </group>
+                        <group string="Emergency Contact">
+                            <field name="emergency_contact_name"/>
+                            <field name="emergency_contact_phone"/>
+                            <field name="emergency_contact_relation"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Banking Information">
+                            <field name="bank_account_number"/>
+                            <field name="bank_name"/>
+                            <field name="bank_branch"/>
+                            <field name="bank_ifsc"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_employee_tree_inherit_supreme" model="ir.ui.view">
+        <field name="name">hr.employee.tree.supreme</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="employee_code"/>
+            </field>
+            <field name="work_location_id" position="after">
+                <field name="work_location_type"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_employee_search_inherit_supreme" model="ir.ui.view">
+        <field name="name">hr.employee.search.supreme</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="employee_code"/>
+            </field>
+            <filter name="inactive" position="after">
+                <separator/>
+                <filter string="Office" name="office" domain="[('work_location_type','=','office')]"/>
+                <filter string="Work from Home" name="wfh" domain="[('work_location_type','=','home')]"/>
+                <filter string="Hybrid" name="hybrid" domain="[('work_location_type','=','hybrid')]"/>
+            </filter>
+            <group position="inside">
+                <filter string="Work Location" name="group_work_location" context="{'group_by':'work_location_type'}"/>
+                <filter string="Blood Group" name="group_blood" context="{'group_by':'blood_group'}"/>
+            </group>
+        </field>
+    </record>
+</odoo>
