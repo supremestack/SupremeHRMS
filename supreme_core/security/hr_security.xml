@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- supreme_core/security/hr_security.xml -->
+<odoo>
+    <data noupdate="0">
+        <!-- HR Manager can do everything -->
+        <record id="supreme_hr_manager_rule" model="ir.rule">
+            <field name="name">Supreme HR Manager Rule</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+        
+        <!-- HR User can see all, edit some -->
+        <record id="supreme_hr_user_rule" model="ir.rule">
+            <field name="name">Supreme HR User Rule</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        
+        <!-- Regular users can only see their own record -->
+        <record id="supreme_employee_self_rule" model="ir.rule">
+            <field name="name">Employee Self Rule</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+    </data>
+</odoo>
