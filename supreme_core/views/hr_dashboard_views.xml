@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dashboard Action -->
+    <record id="action_supreme_dashboard" model="ir.actions.client">
+        <field name="name">HR Dashboard</field>
+        <field name="tag">supreme_dashboard</field>
+        <field name="target">main</field>
+    </record>
+    
+    <!-- Dashboard View (if using server-side rendering) -->
+    <record id="view_supreme_dashboard" model="ir.ui.view">
+        <field name="name">supreme.dashboard</field>
+        <field name="model">hr.employee</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="HR Dashboard" create="false" edit="false">
+                <sheet>
+                    <!-- Metrics Row -->
+                    <div class="row mb-4">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h2 class="text-primary">
+                                        <field name="total_employee_count" readonly="1"/>
+                                    </h2>
+                                    <p>Total Employees</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h2 class="text-success">
+                                        <field name="present_today_count" readonly="1"/>
+                                    </h2>
+                                    <p>Present Today</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h2 class="text-warning">
+                                        <field name="on_leave_count" readonly="1"/>
+                                    </h2>
+                                    <p>On Leave</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h2 class="text-info">
+                                        <field name="new_joiners_count" readonly="1"/>
+                                    </h2>
+                                    <p>New This Month</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Department Distribution -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>Department Distribution</h3>
+                            <widget name="pie_chart" 
+                                    title="Employees by Department"
+                                    field="department_distribution"/>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
