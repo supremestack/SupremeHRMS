@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Supreme HRMS Main Menu -->
+    <menuitem id="menu_supreme_hrms_root"
+              name="Supreme HRMS"
+              sequence="45"
+              web_icon="supreme_core,static/description/icon.png"
+              groups="base.group_user"/>
+    
+    <!-- Dashboard Menu -->
+    <menuitem id="menu_supreme_dashboard"
+              name="HR Dashboard"
+              parent="menu_supreme_hrms_root"
+              sequence="1"
+              action="action_supreme_dashboard"
+              groups="base.group_user"/>
+    
+    <!-- Employees Menu -->
+    <menuitem id="menu_supreme_employees"
+              name="Employees"
+              parent="menu_supreme_hrms_root"
+              sequence="10"/>
+    
+    <menuitem id="menu_supreme_employee_list"
+              name="All Employees"
+              parent="menu_supreme_employees"
+              action="hr.open_view_employee_list_my"
+              sequence="1"/>
+    
+    <!-- Attendance Menu -->
+    <menuitem id="menu_supreme_attendance"
+              name="Attendance"
+              parent="menu_supreme_hrms_root"
+              sequence="20"/>
+    
+    <menuitem id="menu_supreme_attendance_today"
+              name="Today's Attendance"
+              parent="menu_supreme_attendance"
+              action="hr_attendance.hr_attendance_action"
+              sequence="1"/>
+    
+    <!-- Leave Menu -->
+    <menuitem id="menu_supreme_leaves"
+              name="Leaves"
+              parent="menu_supreme_hrms_root"
+              sequence="30"/>
+    
+    <menuitem id="menu_supreme_leave_requests"
+              name="Leave Requests"
+              parent="menu_supreme_leaves"
+              action="hr_holidays.hr_leave_action_all"
+              sequence="1"/>
+    
+    <!-- Configuration Menu -->
+    <menuitem id="menu_supreme_configuration"
+              name="Configuration"
+              parent="menu_supreme_hrms_root"
+              sequence="100"
+              groups="hr.group_hr_manager"/>
+    
+    <menuitem id="menu_supreme_settings"
+              name="Settings"
+              parent="menu_supreme_configuration"
+              action="hr.action_hr_configuration_settings"
+              sequence="1"/>
+</odoo>
