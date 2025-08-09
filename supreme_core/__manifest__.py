@@ -2,50 +2,59 @@
     'name': 'Supreme HRMS Core',
     'version': '18.0.1.0.0',
     'category': 'Human Resources',
-    'summary': 'Core HRMS extensions and configurations for Supreme Stack Systems',
+    'summary': 'Core HRMS with MuK Theme Integration',
     'description': """
 Supreme HRMS Core Module
 ========================
 
-This module provides core HR management extensions including:
-* Enhanced employee records with additional fields
-* Employee ID generation and management
-* Emergency contact information
-* Banking details management
-* GPS-based attendance tracking support
-* Multi-company configuration
+Fully compatible with MuK Backend Theme modules.
 
-Developed by Supreme Stack Systems Limited
-Website: www.supremestack.net
+Features:
+* Enhanced employee records
+* MuK theme responsive design
+* Sidebar navigation support
+* Chatter position compatibility
+* Color theme integration
     """,
     'author': 'Supreme Stack Systems Limited',
     'website': 'https://www.supremestack.net',
     'license': 'LGPL-3',
     'depends': [
+        # Core Odoo modules
         'hr',
-        'hr_attendance',
+        'hr_attendance', 
         'hr_holidays',
         'hr_expense',
         'hr_recruitment',
         'hr_contract',
         'hr_skills',
+        
+        # MuK Theme modules (optional but recommended)
+        'muk_web_theme',  # Main theme - mark as optional
     ],
-    'external_dependencies': {
-        'python': [],
-    },
     'data': [
         'security/hr_security.xml',
         'security/ir.model.access.csv',
         'data/hr_sequence.xml',
         'views/hr_employee_views.xml',
+        'views/hr_dashboard_views.xml',
         'views/res_config_settings_views.xml',
         'views/menu_items.xml',
     ],
-    'demo': [
-        'demo/demo_data.xml',
-    ],
+    'assets': {
+        'web.assets_backend': [
+            'supreme_core/static/src/scss/supreme_theme.scss',
+            'supreme_core/static/src/js/supreme_core.js',
+        ],
+    },
+    'images': ['static/description/banner.png'],
     'installable': True,
     'application': True,
     'auto_install': False,
-    'images': ['static/description/banner.png'],
+    
+    # MuK Theme Compatibility
+    'muk_theme_compatible': True,
+    'external_dependencies': {
+        'python': [],
+    },
 }
