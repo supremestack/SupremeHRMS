@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Settings View - MuK Theme Compatible -->
+    <record id="res_config_settings_view_form_supreme" model="ir.ui.view">
+        <field name="name">res.config.settings.form.supreme</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Supreme HRMS Section -->
+            <xpath expr="//div[@id='hr_attendance']" position="after">
+                <h2>Supreme HRMS Configuration</h2>
+                <div class="row mt16 o_settings_container" id="supreme_hrms_settings">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="use_employee_code"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_employee_code"/>
+                            <div class="text-muted">
+                                Auto-generate employee IDs (EMP00001, EMP00002...)
+                            </div>
+                            <div class="content-group" attrs="{'invisible': [('use_employee_code', '=', False)]}">
+                                <div class="mt16">
+                                    <label for="employee_code_prefix" class="o_light_label"/>
+                                    <field name="employee_code_prefix" class="oe_inline"/>
+                                </div>
+                                <div class="mt8">
+                                    <label for="employee_code_padding" class="o_light_label"/>
+                                    <field name="employee_code_padding" class="oe_inline"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="track_work_location"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="track_work_location"/>
+                            <div class="text-muted">
+                                Track employee work locations (Office, WFH, Hybrid)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_emergency_contacts"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_emergency_contacts"/>
+                            <div class="text-muted">
+                                Manage emergency contact information for employees
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_gps_attendance"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_gps_attendance"/>
+                            <div class="text-muted">
+                                Track GPS location for attendance check-in/out
+                            </div>
+                            <div class="content-group" attrs="{'invisible': [('enable_gps_attendance', '=', False)]}">
+                                <div class="mt16 text-warning">
+                                    <i class="fa fa-warning"/> Requires employee consent
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MuK Theme Integration Settings -->
+                <h2>Theme Integration</h2>
+                <div class="row mt16 o_settings_container" id="theme_settings">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="muk_theme_installed" readonly="1"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="muk_theme_installed"/>
+                            <div class="text-muted">
+                                MuK Backend Theme is 
+                                <span attrs="{'invisible': [('muk_theme_installed', '=', True)]}">
+                                    <span class="text-danger">not installed</span>
+                                    <br/>
+                                    <a href="/web#action=base.open_module_tree&amp;active_id=muk_web_theme" class="btn-link">
+                                        <i class="fa fa-arrow-right"/> Install MuK Theme
+                                    </a>
+                                </span>
+                                <span attrs="{'invisible': [('muk_theme_installed', '=', False)]}" class="text-success">
+                                    <i class="fa fa-check"/> installed and active
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('muk_theme_installed', '=', False)]}">
+                        <div class="o_setting_left_pane">
+                            <field name="supreme_theme_colors"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="supreme_theme_colors"/>
+                            <div class="text-muted">
+                                Use Supreme HRMS brand colors with MuK theme
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
